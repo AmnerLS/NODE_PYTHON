@@ -6,7 +6,7 @@ const menuSchema = new mongoose.Schema({
     image: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
-    availability: { type: Boolean, required: true },
+    quantity: {type: Number, required: true},
     comments: [{
       username: { type: String, required: false },  
       comment: { type: String, required: false }
@@ -14,7 +14,7 @@ const menuSchema = new mongoose.Schema({
     scores: [{
       score: { type: Number, required: false }      
     }],
-    id_food: { type: mongoose.Schema.Types.ObjectId, ref: 'foods', required: true } 
+    foods: [{ type: mongoose.Schema.Types.ObjectId, ref: 'foods', required: true } ]
   },
   {
     timetamp: true,
