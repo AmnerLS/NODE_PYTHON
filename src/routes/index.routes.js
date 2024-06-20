@@ -50,6 +50,19 @@ router.get('/foods', async (req, res) => {
     }
 });
 
+router.get('/foods/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const food = await ModelFood.findById(id);
+        if (!food) {
+            return res.status(404).json({ error: "Food not found" });
+        }
+        res.json(food);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 router.get('/orders', async (req,res) => {
     try {
         const orders = await ModelOrder.find();
@@ -72,6 +85,19 @@ router.get('/menus', async (req,res) => {
     try {
         const menus = await ModelMenu.find();
         res.json(menus);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+router.get('/menus/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const menu = await ModelMenu.findById(id);
+        if (!menu) {
+            return res.status(404).json({ error: "Menu not found" });
+        }
+        res.json(menu);
     } catch (error) {
         res.status(500).send(error.message);
     }
